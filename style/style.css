@@ -2,47 +2,14 @@ body {
   min-height: 100%;
 }
 
-.mdl-layout__content, .page-content {
-  height: 90%;
+.mdl-layout__content {
+  height: 100%;
   padding-left: 0;
 }
 
-.app-nav-drawer {
-  height: 100%;
-  margin-left: 0;
-  border-right: 1px solid steelblue;
-  display: flex;
-  flex-direction: column;
-}
-
-.app-nav-item {
-  display: flex;
-  min-height: 32px;
-  height: 48px;
-  border-top: 1px solid steelblue;
-  padding: 0 5px 0 10px;
-  cursor: pointer;
-  align-items: flex-start;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.app-nav-item:hover {
-  background-color: lightgrey;
-}
-
-.app-nav-item.is-selected {
-  justify-content: flex-start;
-  height: 100%;
-}
-
-.app-nav-item.is-selected .mdl-navigation__link {
-  padding-top: 4px;
-  font-weight: bolder;
-}
-
-.app-nav-item:last-of-type {
-  border-bottom: 1px solid steelblue;
+.page-content {
+  height: 95%;
+  padding-left: 0;
 }
 
 .nav-divider {
@@ -56,4 +23,66 @@ body {
   font-style: italic;
   font-weight: bold;
   padding-right: 0;
+}
+
+.app-nav-drawer, .app-nav-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-nav-drawer {
+  height: 100%;
+  margin-left: 0;
+  border-right: 1px solid steelblue;
+}
+
+.app-nav-item {
+  display: flex;
+  min-height: 32px;
+  height: 48px;
+  border-top: 1px solid steelblue;
+  padding: 0 5px 0 10px;
+  cursor: pointer;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.app-nav-item:hover {
+  background-color: lightblue;
+}
+
+.app-nav-item.is-selected {
+  justify-content: flex-start;
+  height: 100%;
+  cursor: default;
+}
+
+.app-nav-item.is-selected .mdl-navigation__link {
+  padding-top: 4px;
+  font-weight: bolder;
+}
+
+.app-nav-item:last-of-type {
+  border-bottom: 1px solid steelblue;
+}
+
+.app-main-cell, .app-main-div {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.app-main-div {
+  display: flex;
+  border: solid 1px steelblue;
+}
+
+.app-main-core {
+  height: 100%;
+  flex: 3;
+}
+
+.app-main-det {
+  height: 100%;
+  flex: 1;
+  border-left: solid 1px steelblue;
 }
