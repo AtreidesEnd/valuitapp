@@ -15,7 +15,6 @@ class AppMain extends Component {
 
     let appDiv;
     if (this.props.selected && appModules[this.props.selected].hasDetail) {
-      console.log("Module with detail found");
       appDiv = (
         <div className="app-main-div mdl-shadow--4dp">
           <div className="app-main-core">{appModules[this.props.selected].title}</div>
@@ -23,14 +22,12 @@ class AppMain extends Component {
         </div>
       );
     } else if (this.props.selected) {
-      console.log("Module with no detail found");
       appDiv = (
         <div className="app-main-div mdl-shadow--4dp">
           <div className="app-main-core">{appModules[this.props.selected].title}</div>
         </div>
       );
     } else {
-      console.log("no module found");
       appDiv = <div className="app-main-div mdl-shadow--4dp"> Select a module to get started.</div>
     }
     return appDiv;
