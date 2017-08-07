@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
+import NavsReducer from './reducer_appnavs';
 
 const rootReducer = combineReducers({
-  state: (state = {}) => state
+  navs : NavsReducer,
 });
 
 export default rootReducer;
