@@ -66,6 +66,12 @@ body {
   border-bottom: 1px solid steelblue;
 }
 
+.app-nav-subtab-list {
+  list-style-type: none;
+  padding-left: 1em;
+  margin: 0;
+}
+
 .app-main-cell, .app-main-div {
   height: 100%;
   box-sizing: border-box;
