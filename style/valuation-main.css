@@ -1,0 +1,63 @@
+.valmain-table-div {
+  margin: 10px;
+}
+
+.valmain-table {
+  width: 100%;
+}
+
+.valmain-thead-timeperiod {
+  text-align: center !important;
+  vertical-align: middle !important;
+  font-size: larger !important;
+  padding: 0 !important;
+}
+
+.valmain-thead-valdriver {
+  text-align: left !important;
+  font-size: larger !important;
+  width: 240px;
+  border-right: solid 1px black;
+  vertical-align: middle !important;
+  padding: 1em !important;
+}
+
+.valmain-table-time-cell {
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1em !important;
+  padding: 0 !important;
+  vertical-align: middle !important;
+  text-align: center !important;
+  border-bottom: 1px solid black;
+  border-right: 1px dotted grey;
+  /*width: calc(100%/12);*/
+}
+
+.valmain-table-head-row,.valmain-thead-valdriver,
+.valmain-thead-timeperiod,.valmain-table-head-time-row,
+.valmain-table-time-cell,.valmain-table-body-row,
+.valmain-table-body-row-header,.valmain-table-body-cell
+{
+  min-height: 20px !important;
+  max-height: 48px !important;
+  height: auto !important;
+}
+
+.valmain-table-body-row-header {
+  padding: .2em;
+  font-size: 1em;
+  vertical-align: middle;
+  text-align: left;
+  border-right: solid 1px black;
+}
+
+.valmain-table-body-cell {
+  padding: .2em !important;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.spacer {
+  padding-left: 1.5em;
+}

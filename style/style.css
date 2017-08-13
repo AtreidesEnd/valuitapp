@@ -93,25 +93,3 @@ body {
   flex: 1;
   border-left: solid 1px steelblue;
 }
-
-.valmain-table-div {
-  margin: 10px;
-}
-
-.valmain-thead-timeperiod {
-  text-align: center !important;
-  font-size: larger !important;
-  padding: 0 !important;
-}
-
-.valmain-thead-valdriver {
-  text-align: left !important;
-  font-size: larger !important;
-  width: 240px;
-  border-right: solid 1px black;
-  vertical-align: middle !important;
-}
-
-.valmain-table tbody th:first-of-type {
-  border-right: solid 1px black;
-}
