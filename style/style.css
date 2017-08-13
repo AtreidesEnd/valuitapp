@@ -8,7 +8,7 @@ body {
 }
 
 .page-content {
-  height: 95%;
+  height: 98%;
   padding-left: 0;
 }
 
@@ -33,18 +33,23 @@ body {
 .app-nav-drawer {
   height: 100%;
   margin-left: 0;
-  border-right: 1px solid steelblue;
+  border-right: 2px solid indigo;
+  border-bottom: 2px solid indigo;
 }
 
 .app-nav-item {
   display: flex;
   min-height: 32px;
   height: 48px;
-  border-top: 1px solid steelblue;
+  border-bottom: 2px solid indigo;;
   padding: 0 5px 0 10px;
   cursor: pointer;
   align-items: flex-start;
   justify-content: center;
+}
+
+.app-nav-item:last-of-type {
+  border-bottom: none;
 }
 
 .app-nav-item:hover:not(.is-selected) {
@@ -62,10 +67,6 @@ body {
   font-weight: bolder;
 }
 
-.app-nav-item:last-of-type {
-  border-bottom: 1px solid steelblue;
-}
-
 .app-nav-subtab-list {
   list-style-type: none;
   padding-left: 1em;
@@ -79,7 +80,7 @@ body {
 
 .app-main-div {
   display: flex;
-  border: solid 1px steelblue;
+  border-bottom: solid 2px indigo;
 }
 
 .app-main-core {
@@ -91,4 +92,26 @@ body {
   height: 100%;
   flex: 1;
   border-left: solid 1px steelblue;
+}
+
+.valmain-table-div {
+  margin: 10px;
+}
+
+.valmain-thead-timeperiod {
+  text-align: center !important;
+  font-size: larger !important;
+  padding: 0 !important;
+}
+
+.valmain-thead-valdriver {
+  text-align: left !important;
+  font-size: larger !important;
+  width: 240px;
+  border-right: solid 1px black;
+  vertical-align: middle !important;
+}
+
+.valmain-table tbody th:first-of-type {
+  border-right: solid 1px black;
 }

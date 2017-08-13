@@ -36,7 +36,7 @@ class AppNav extends Component {
 
   render() {
     return (
-      <div className="app-nav-drawer mdl-cell mdl-cell--2-col mdl-shadow--4dp">
+      <div className="app-nav-drawer mdl-cell mdl-cell--2-col">
         {this.renderNavs()}
       </div>
     );

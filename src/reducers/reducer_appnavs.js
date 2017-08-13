@@ -21,7 +21,7 @@ export default function(state = null, action) {
     ]}
   ];
 
-  var selectedNav = null;
+  var selectedNav = 'Valuation Model';
 
   switch(action.type) {
     case 'APP_NAV_SELECTED':

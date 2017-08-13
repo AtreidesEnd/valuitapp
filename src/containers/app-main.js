@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {ValuationMain} from './valuation-main';
 
 class AppMain extends Component {
 
@@ -14,21 +15,25 @@ class AppMain extends Component {
     }
 
     let appDiv;
-    if (this.props.selected && appModules[this.props.selected].hasDetail) {
-      appDiv = (
-        <div className="app-main-div mdl-shadow--4dp">
-          <div className="app-main-core">{appModules[this.props.selected].title}</div>
-          <div className="app-main-det">Detail section here</div>
-        </div>
-      );
-    } else if (this.props.selected) {
-      appDiv = (
-        <div className="app-main-div mdl-shadow--4dp">
-          <div className="app-main-core">{appModules[this.props.selected].title}</div>
-        </div>
-      );
+    if (appModules[this.props.selected].hasDetail) {
+      if (this.props.selected === "Valuation Model") {
+        appDiv = (
+          <ValuationMain/>
+        );
+      } else {
+        appDiv = (
+          <div className="app-main-div">
+            <div className="app-main-core">{appModules[this.props.selected].title}</div>
+            <div className="app-main-det">Detail section here</div>
+          </div>
+        );
+      }
     } else {
-      appDiv = <div className="app-main-div mdl-shadow--4dp"> Select a module to get started.</div>
+      appDiv = (
+        <div className="app-main-div">
+          <div className="app-main-core">{appModules[this.props.selected].title}</div>
+        </div>
+      );
     }
     return appDiv;
   }
