@@ -6,20 +6,15 @@
   width: 100%;
 }
 
-.valmain-thead-timeperiod {
-  text-align: center !important;
-  vertical-align: middle !important;
-  font-size: larger !important;
-  padding: 0 !important;
-}
-
 .valmain-thead-valdriver {
   text-align: left !important;
-  font-size: larger !important;
-  width: 240px;
+  font-size: 1.5em !important;
+  color: black !important;
+  width: 240px !important;
   border-right: solid 1px black;
-  vertical-align: middle !important;
-  padding: 1em !important;
+  vertical-align: top !important;
+  padding-left: 1em !important;
+  padding-top: .5em !important;
 }
 
 .valmain-table-time-cell {
@@ -34,11 +29,10 @@
   /*width: calc(100%/12);*/
 }
 
-.valmain-table-head-row,.valmain-thead-valdriver,
-.valmain-thead-timeperiod,.valmain-table-head-time-row,
-.valmain-table-time-cell,.valmain-table-body-row,
-.valmain-table-body-row-header,.valmain-table-body-cell
-{
+
+.valmain-table tr,
+.valmain-table th,
+.valmain-table td {
   min-height: 20px !important;
   max-height: 48px !important;
   height: auto !important;
