@@ -7,7 +7,7 @@ export default class ValtableHeader extends Component {
 
   renderTimeCells() {
     let classes = "valmain-table-time-cell";
-    let fixWidth = (80/this.props.timePeriods.length)+'%';
+    let fixWidth = (70/this.props.timePeriods.length)+'%';
     return this.props.timePeriods.map(
       (time) => (<th key={time} className={classes} style={{width:fixWidth}}>{time}</th>));
   }

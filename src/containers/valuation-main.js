@@ -17,7 +17,18 @@ export class ValuationMain extends Component {
             </tr>
             <tr className="valmain-table-body-row">
               <th className="valmain-table-body-row-header">Product 1 Sales</th>
-              <td className="valmain-table-body-cell"></td>
+              <td className="valmain-table-body-cell valmain-cell-positive">100</td>
+              <td className="valmain-table-body-cell valmain-cell-positive">80</td>
+              <td className="valmain-table-body-cell valmain-cell-positive">80</td>
+              <td className="valmain-table-body-cell valmain-cell-positive">80</td>
+              <td className="valmain-table-body-cell valmain-cell-positive">80</td>
+              <td className="valmain-table-body-cell valmain-cell-positive">80</td>
+              <td className="valmain-table-body-cell valmain-cell-positive">80</td>
+              <td className="valmain-table-body-cell valmain-cell-positive">60</td>
+              <td className="valmain-table-body-cell valmain-cell-positive">60</td>
+              <td className="valmain-table-body-cell valmain-cell-positive">60</td>
+              <td className="valmain-table-body-cell valmain-cell-negative">(50)</td>
+              <td className="valmain-table-body-cell valmain-cell-negative">(40)</td>
             </tr>
             <tr className="valmain-table-body-row">
               <th className="valmain-table-body-row-header">Product 1 COGS</th>

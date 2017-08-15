@@ -3,14 +3,15 @@
 }
 
 .valmain-table {
-  width: 100%;
+  width: 80%;
+  table-layout: fixed;
 }
 
 .valmain-thead-valdriver {
   text-align: left !important;
   font-size: 1.5em !important;
-  color: black !important;
-  width: 240px !important;
+  color: indigo !important;
+  width: 300px !important;
   border-right: solid 1px black;
   vertical-align: top !important;
   padding-left: 1em !important;
@@ -39,17 +40,27 @@
 }
 
 .valmain-table-body-row-header {
-  padding: .2em;
-  font-size: 1em;
-  vertical-align: middle;
-  text-align: left;
+  padding: .4em 1em !important;
+  vertical-align: middle !important;
+  text-align: left !important;
   border-right: solid 1px black;
 }
 
 .valmain-table-body-cell {
   padding: .2em !important;
-  vertical-align: middle;
-  text-align: center;
+  vertical-align: middle !important;
+  text-align: center !important;
+  font-style: italic !important;
+}
+
+.valmain-cell-positive {
+  color: darkgreen;
+  background-color: hsl(120, 100%, 95%);
+}
+
+.valmain-cell-negative {
+  color: darkred;
+  background-color: hsl(0, 100%, 95%);
 }
 
 .spacer {
