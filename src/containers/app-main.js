@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {ValuationMain} from './valuation-main';
+import ValuationMain from './valuation-main';
 
 class AppMain extends Component {
 
