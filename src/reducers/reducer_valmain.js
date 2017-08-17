@@ -64,36 +64,39 @@ export default function(state = null, action) {
     },
   };
 
-  // default folder data setup
-  let root1 = new ValueFolder(null,"US");
-  let root2 = new ValueFolder(null,"EMEA");
+  if (!state) {
+    // default folder data setup
+    let root1 = new ValueFolder(null,"US");
+    let root2 = new ValueFolder(null,"EMEA");
 
-  let negStyle = {
-    color: 'darkred',
-    backgroundColor: 'hsl(0,100%,95%)',
+    let negStyle = {
+      color: 'darkred',
+      backgroundColor: 'hsl(0,100%,95%)',
+    }
+
+    let posStyle = {
+      color: 'darkgreen',
+      backgroundColor: 'hsl(120,100%,95%)',
+    }
+
+    root1.addFolder("East Coast");
+    root1.addDriver("US Global Sales");
+    root1.addDriver("EMEA Global G&A");
+    root1.childFolders[0].addDriver("NY Sales");
+    root1.childFolders[0].childDrivers[0].addStream(1,[50,50,50,50,50,50,50,50,50,50,50,50],posStyle);
+    root1.childFolders[0].addDriver("NY COGS");
+    root1.childFolders[0].childDrivers[1].addStream(1,[-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20],negStyle);
+    root2.addDriver("EMEA Global Sales");
+    root2.addDriver("EMEA Global G&A");
+
+    let valData = [root1, root2];
+    console.log("Reducer log:");
+    console.log(valData);
+
+    return {
+      timeConfig: timeConfig,
+      valData: valData,
+    }
   }
-
-  let posStyle = {
-    color: 'darkgreen',
-    backgroundColor: 'hsl(120,100%,95%)',
-  }
-
-  root1.addFolder("East Coast");
-  root1.addDriver("US Global Sales");
-  root1.addDriver("EMEA Global G&A");
-  root1.childFolders[0].addDriver("NY Sales");
-  root1.childFolders[0].childDrivers[0].addStream(1,[50,50,50,50,50,50,50,50,50,50,50,50],posStyle);
-  root1.childFolders[0].addDriver("NY COGS");
-  root1.childFolders[0].childDrivers[1].addStream(1,[-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20],negStyle);
-  root2.addDriver("EMEA Global Sales");
-  root2.addDriver("EMEA Global G&A");
-
-  let valData = [root1, root2];
-  console.log("Reducer log:");
-  console.log(valData);
-
-  return {
-    timeConfig: timeConfig,
-    valData: valData,
-  }
+  return state;
 }
