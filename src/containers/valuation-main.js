@@ -6,10 +6,6 @@ import ValtableBody from '../components/valtable-body';
 
 class ValuationMain extends Component {
   render() {
-    console.log("ValMain Rendering...");
-    console.log(this.props.timeConfig);
-    console.log(this.props.valData);
-
     return (
       <div className="valmain-table-div">
         <table className="mdl-data-table mdl-js-data-table valmain-table">

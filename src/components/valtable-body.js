@@ -6,24 +6,47 @@ export default class ValtableBody extends Component {
     super(props);
   }
 
+  recurseFolders(node,res,depth) {
+    res.push( // first insert the row label (the folder)
+      <ValtableRow key={node.name} header={node.name}
+        timeValIndices={this.props.timeConfig.timeValIndices}
+        valueStream={null}
+        depth={depth}
+      />
+    ); // then see if it has child folders, if so recursively process them
+    if (node.childFolders.length > 0) {
+      node.childFolders.forEach((ele) => {
+        this.recurseFolders(ele,res,depth+1);
+      });
+    } // then see if it has child drivers, if so process each of them
+    if (node.childDrivers.length > 0) {
+      node.childDrivers.forEach((driver) => {
+        console.log(driver);
+        res.push(
+          <ValtableRow key={driver.name} header={driver.name}
+            timeValIndices={this.props.timeConfig.timeValIndices}
+            valueStream={driver.valueStream}
+            depth={depth+1}
+          />
+        );
+      });
+    }
+    return; // folders and drivers proc'd, done
+  }
+
+  renderBodyRows() {
+    const valData = this.props.valData;
+    if (!valData) return null;
+    let res = [];
+    valData.forEach((rootFolder) => this.recurseFolders(rootFolder,res,1));
+    return res;
+  }
+
   render() {
+
     return (
       <tbody>
-        <tr className="valmain-table-body-row">
-          <th className="valmain-table-body-row-header">Product 1 Sales</th>
-          <td className="valmain-table-body-cell valmain-cell-positive">100</td>
-          <td className="valmain-table-body-cell valmain-cell-positive">80</td>
-          <td className="valmain-table-body-cell valmain-cell-positive">80</td>
-          <td className="valmain-table-body-cell valmain-cell-positive">80</td>
-          <td className="valmain-table-body-cell valmain-cell-positive">80</td>
-          <td className="valmain-table-body-cell valmain-cell-positive">80</td>
-          <td className="valmain-table-body-cell valmain-cell-positive">80</td>
-          <td className="valmain-table-body-cell valmain-cell-positive">60</td>
-          <td className="valmain-table-body-cell valmain-cell-positive">60</td>
-          <td className="valmain-table-body-cell valmain-cell-positive">60</td>
-          <td className="valmain-table-body-cell valmain-cell-negative">(50)</td>
-          <td className="valmain-table-body-cell valmain-cell-negative">(40)</td>
-        </tr>
+        {this.renderBodyRows()}
       </tbody>
     );
   }

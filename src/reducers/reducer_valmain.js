@@ -34,12 +34,13 @@ export default function(state = null, action) {
     }
 
     addCell(date,value,style) {
-      this.valueStream.push(new ValueCell(date,value,style));
+      this.valueStream[date]= new ValueCell(date,value,style);
     }
 
     addStream(startDate,values,style) {
       values.forEach((value) => {
-        this.valueStream.push(new ValueCell(startDate++,value,style));
+        let date = startDate++;
+        this.valueStream[date]= new ValueCell(date,value,style);
       });
     }
 
@@ -57,9 +58,12 @@ export default function(state = null, action) {
   let timeConfig = {
     timeViewIndices: [1,2,3,4,5,6,7,8,9,10,11,12],
     timeViewInterval: 'Monthly',
+    timeViewStartMonth: 1,
+    timeViewStartYear: 2017,
+    timeValIndices: [1,2,3,4,5,6,7,8,9,10,11,12],
     projectTimeSettings: {
-      startYear: '2017',
-      startMonth: '1',
+      startYear: 2017,
+      startMonth: 1,
       defaultInterval: 'Monthly',
     },
   };
@@ -81,7 +85,7 @@ export default function(state = null, action) {
 
     root1.addFolder("East Coast");
     root1.addDriver("US Global Sales");
-    root1.addDriver("EMEA Global G&A");
+    root1.addDriver("US Global G&A");
     root1.childFolders[0].addDriver("NY Sales");
     root1.childFolders[0].childDrivers[0].addStream(1,[50,50,50,50,50,50,50,50,50,50,50,50],posStyle);
     root1.childFolders[0].addDriver("NY COGS");
@@ -90,8 +94,6 @@ export default function(state = null, action) {
     root2.addDriver("EMEA Global G&A");
 
     let valData = [root1, root2];
-    console.log("Reducer log:");
-    console.log(valData);
 
     return {
       timeConfig: timeConfig,
