@@ -48,18 +48,23 @@ export default function(state = null, action) {
   }
   //==============================//
   //==== DATA MODEL FUNCTIONS ====//
-  newFolder(name="new folder", parentID=null) {
+  var newFolder = function (name="new folder", parentID=null) {
     const newFolder = new ValueFolder(name, parentID);
     valData.folders[newFolder.id] = newFolder;
     // keep track of folders that have no parents as 'root' folders
-    if (!parentID) valData.roots[newFolder.id] = null;
+    if (!parentID) {
+      valData.roots[newFolder.id] = null;
+    } else {
+      valData.folders[parentID].childFolders.push(newFolder.id);
+    }
     return newFolder;
   }
 
-  newDriver(name = "new driver", parentID) {
+  var newDriver = function (name = "new driver", parentID) {
     if (!parentID) throw new Error("Invalid add driver, parent is required!");
-    const newDriver = new ValueDriver(name,parentID,valData.folders.[parentID].segments));
-    valData[newDriver.id] = newDriver;
+    const newDriver = new ValueDriver(name,parentID,valData.folders[parentID].segments);
+    valData.drivers[newDriver.id] = newDriver;
+    valData.folders[parentID].childDrivers.push(newDriver.id);
     return newDriver;
   }
   //==============================//
@@ -91,22 +96,24 @@ export default function(state = null, action) {
     valData.folders = {}; // set of all folders
     valData.drivers = {}; // set of all drivers
     valData.roots = {}; // set of all roots
+    // building up US data
     let us = newFolder("US", null);
-    let emea = newFolder("EMEA",null);
-
     let usSales = newDriver("US Global Sales",us.id);
+    usSales.addStream(1,[100,100,100,100,100,100,100,100,100,100,100,100]);
     let usCosts = newDriver("US Global G&A", us.id);
+    usCosts.addStream(1,[-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20]);
+    let ec = newFolder("East Coast",us.id);
+    let nySales = newDriver("NY Sales",ec.id);
+    nySales.addStream(1,[50,50,50,50,50,50,50,50,50,50,50,50]);
+    let nyCosts = newDriver("NY COGS",ec.id);
+    nyCosts.addStream(1,[-60,-60,-60,-60,-60,-60,-60,-60,-60,-60,-60,-60]);
 
-
-    root1.addFolder("East Coast");
-    root1.addDriver("US Global Sales");
-    root1.addDriver("US Global G&A");
-    root1.childFolders[0].addDriver("NY Sales");
-    root1.childFolders[0].childDrivers[0].addStream(1,[50,50,50,50,50,50,50,50,50,50,50,50]);
-    root1.childFolders[0].addDriver("NY COGS");
-    root1.childFolders[0].childDrivers[1].addStream(1,[-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20]);
-    root2.addDriver("EMEA Global Sales");
-    root2.addDriver("EMEA Global G&A");
+    let emea = newFolder("EMEA",null);
+    let emeaSales = newDriver("EMEA Global Sales", emea.id);
+    emeaSales.addStream(1,[50,50,50,50,50,50,50,50,50,50,50,50]);
+    let emeaCosts = newDriver("EMEA Global G&A", emea.id);
+    emeaCosts.addStream(1,[-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20]);
+    console.log(valData);
 
     return {
       timeConfig: timeConfig,

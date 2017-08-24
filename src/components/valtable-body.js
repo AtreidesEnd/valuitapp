@@ -6,22 +6,24 @@ export default class ValtableBody extends Component {
     super(props);
   }
 
-  recurseFolders(node,res,depth) {
+  recurseFolders(folder,res,depth) {
+    console.log("Recursing folder: ", folder.id," name: ", folder.name);
+    const valData = this.props.valData;
     res.push( // first insert the row label (the folder)
-      <ValtableRow key={node.name} header={node.name}
+      <ValtableRow key={folder.name} header={folder.name}
         timeValIndices={this.props.timeConfig.timeValIndices}
         valueStream={null}
         depth={depth}
       />
     ); // then see if it has child folders, if so recursively process them
-    if (node.childFolders.length > 0) {
-      node.childFolders.forEach((ele) => {
-        this.recurseFolders(ele,res,depth+1);
+    if (folder.childFolders.length > 0) {
+      folder.childFolders.forEach(folderId => {
+        this.recurseFolders(valData.folders[folderId],res,depth+1);
       });
     } // then see if it has child drivers, if so process each of them
-    if (node.childDrivers.length > 0) {
-      node.childDrivers.forEach((driver) => {
-        console.log(driver);
+    if (folder.childDrivers.length > 0) {
+      folder.childDrivers.forEach((driverId) => {
+        const driver = valData.drivers[driverId];
         res.push(
           <ValtableRow key={driver.name} header={driver.name}
             timeValIndices={this.props.timeConfig.timeValIndices}
@@ -38,7 +40,11 @@ export default class ValtableBody extends Component {
     const valData = this.props.valData;
     if (!valData) return null;
     let res = [];
-    valData.forEach((rootFolder) => this.recurseFolders(rootFolder,res,1));
+    console.log(valData.roots);
+    for (var root in valData.roots) {
+        console.log("Now rendering root: ", root);
+        this.recurseFolders(valData.folders[root],res,1);
+    }
     return res;
   }
 
