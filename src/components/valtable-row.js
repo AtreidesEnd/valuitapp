@@ -20,7 +20,6 @@ export default class ValtableRow extends Component {
     const cellClass = "valmain-table-body-cell";
     const cellPos = "valmain-cell-positive";
     const cellNeg = "valmain-cell-negative";
-    console.log(tdArray);
     return tdArray.map((val,ind) => {
       let resClass = cellClass + ' ' + ((val<0) ? cellNeg : cellPos);
       return <td key={this.props.header+'-'+this.props.timeValIndices[ind]} className={resClass}>{val}</td>
@@ -30,7 +29,6 @@ export default class ValtableRow extends Component {
   render() {
     const trClasses = "valmain-table-body-row";
     const thClasses = "valmain-table-body-row-header";
-    console.log(this.renderRowCells());
     return (
       <tr className={trClasses}>
         <th key={this.props.header+'-0'} className={trClasses}>{this.props.header}</th>

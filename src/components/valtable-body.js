@@ -7,7 +7,6 @@ export default class ValtableBody extends Component {
   }
 
   recurseFolders(folder,res,depth) {
-    console.log("Recursing folder: ", folder.id," name: ", folder.name);
     const valData = this.props.valData;
     res.push( // first insert the row label (the folder)
       <ValtableRow key={folder.name} header={folder.name}
@@ -40,9 +39,7 @@ export default class ValtableBody extends Component {
     const valData = this.props.valData;
     if (!valData) return null;
     let res = [];
-    console.log(valData.roots);
     for (var root in valData.roots) {
-        console.log("Now rendering root: ", root);
         this.recurseFolders(valData.folders[root],res,1);
     }
     return res;
