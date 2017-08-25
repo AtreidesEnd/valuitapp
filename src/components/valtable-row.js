@@ -22,16 +22,46 @@ export default class ValtableRow extends Component {
     const cellNeg = "valmain-cell-negative";
     return tdArray.map((val,ind) => {
       let resClass = cellClass + ' ' + ((val<0) ? cellNeg : cellPos);
-      return <td key={this.props.header+'-'+this.props.timeValIndices[ind]} className={resClass}>{val}</td>
+      return <td key={this.props.headerid+'-'+this.props.timeValIndices[ind]} className={resClass}>{val}</td>
     });
+  }
+
+  renderHead() {
+    const thClasses = "valmain-table-body-row-header";
+    const nestedIndent = {paddingLeft:this.props.depth*15+'px !important'};
+    const iconClasses = "material-icons valmain-table-icons";
+    if (this.props.type === 'folder') {
+      return (
+        <th
+          style={nestedIndent}
+          className={thClasses}>
+          <div>
+            <i className={iconClasses+'-type'}>folder</i>
+            <span>{this.props.header}</span>
+            <i className={iconClasses+'-menu'}>more_vert</i>
+          </div>
+        </th>
+      );
+    } else {
+      return (
+        <th
+          style={nestedIndent}
+          className={thClasses}>
+          <div>
+            <i className={iconClasses+'-type'}>attach_money</i>
+            <span>{this.props.header}</span>
+            <i className={iconClasses+'-menu'}>more_vert</i>
+          </div>
+        </th>
+      );
+    }
   }
 
   render() {
     const trClasses = "valmain-table-body-row";
-    const thClasses = "valmain-table-body-row-header";
     return (
       <tr className={trClasses}>
-        <th key={this.props.header+'-0'} className={trClasses}>{this.props.header}</th>
+        {this.renderHead()}
         {this.renderRowCells()}
       </tr>
     );

@@ -9,9 +9,10 @@ export default class ValtableBody extends Component {
   recurseFolders(folder,res,depth) {
     const valData = this.props.valData;
     res.push( // first insert the row label (the folder)
-      <ValtableRow key={folder.name} header={folder.name}
+      <ValtableRow key={folder.id} header={folder.name} headerid = {folder.id}
         timeValIndices={this.props.timeConfig.timeValIndices}
         valueStream={null}
+        type='folder'
         depth={depth}
       />
     ); // then see if it has child folders, if so recursively process them
@@ -24,9 +25,10 @@ export default class ValtableBody extends Component {
       folder.childDrivers.forEach((driverId) => {
         const driver = valData.drivers[driverId];
         res.push(
-          <ValtableRow key={driver.name} header={driver.name}
+          <ValtableRow key={driver.id} header={driver.name} headerid = {driver.id}
             timeValIndices={this.props.timeConfig.timeValIndices}
             valueStream={driver.valueStream}
+            type='driver'
             depth={depth+1}
           />
         );
