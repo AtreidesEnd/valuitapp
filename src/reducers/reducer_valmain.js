@@ -114,7 +114,6 @@ export default function(state = null, action) {
       timeConfig: timeConfig,
       valData: valData,
     }
-    return state;
   } else {
     let valData = Object.assign({},state.valData);
     let timeConfig = Object.assign({},state.timeConfig);
