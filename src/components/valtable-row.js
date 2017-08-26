@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import classNames from 'classnames';
 
 export default class ValtableRow extends Component {
   constructor(props) {
@@ -9,8 +10,7 @@ export default class ValtableRow extends Component {
     // array of the time values that are in view, measured in months since project start months
     // if aggregating above monthly view, this will be a multi-dimensional array
     // i.e. Quarterly year one would be: [[1,2,3],[4,5,6],[7,8,9],[10,11,12]]
-    const timeValIndices = this.props.timeValIndices;
-    const valueStream = this.props.valueStream;
+    const {timeValIndices,valueStream,headerid} = this.props;
     if (!valueStream || valueStream.length===0) return null;
     let tdArray = timeValIndices.map((timeGroup) => {
       timeGroup = Array.isArray(timeGroup) ? timeGroup : [timeGroup];
@@ -21,40 +21,32 @@ export default class ValtableRow extends Component {
     const cellPos = "valmain-cell-positive";
     const cellNeg = "valmain-cell-negative";
     return tdArray.map((val,ind) => {
-      let resClass = cellClass + ' ' + ((val<0) ? cellNeg : cellPos);
-      return <td key={this.props.headerid+'-'+this.props.timeValIndices[ind]} className={resClass}>{val}</td>
+      let resClass = classNames(cellClass, (val<0) ? cellNeg : cellPos);
+      return (
+        <td
+          key={headerid+'-'+timeValIndices[ind]}
+          className={resClass}>{val}
+        </td>);
     });
   }
 
   renderHead() {
+    const {type,depth,header} = this.props;
     const thClasses = "valmain-table-body-row-header";
-    const nestedIndent = {paddingLeft:this.props.depth*15+'px !important'};
+    const nestedIndent = {paddingLeft:depth*15+'px !important'};
+    const decoIcon = type === 'folder' ? 'folder' : 'attach_money';
     const iconClasses = "material-icons valmain-table-icons";
-    if (this.props.type === 'folder') {
-      return (
-        <th
-          style={nestedIndent}
-          className={thClasses}>
-          <div>
-            <i className={iconClasses+'-type'}>folder</i>
-            <span>{this.props.header}</span>
-            <i className={iconClasses+'-menu'}>more_vert</i>
-          </div>
-        </th>
-      );
-    } else {
-      return (
-        <th
-          style={nestedIndent}
-          className={thClasses}>
-          <div>
-            <i className={iconClasses+'-type'}>attach_money</i>
-            <span>{this.props.header}</span>
-            <i className={iconClasses+'-menu'}>more_vert</i>
-          </div>
-        </th>
-      );
-    }
+    return (
+      <th
+        style={nestedIndent}
+        className={thClasses}>
+        <div>
+          <i className={iconClasses+'-type'}>{decoIcon}</i>
+          <span>{header}</span>
+          <i className={iconClasses+'-menu'}>more_vert</i>
+        </div>
+      </th>
+    );
   }
 
   render() {

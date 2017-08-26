@@ -87,11 +87,6 @@ export default function(state = null, action) {
 
   // mock state for testing
   if (!state) {
-    // default folder data setup
-    // .addStream(1,[50,50,50,50,50,50,50,50,50,50,50,50]);
-    // .addStream(1,[100,100,100,100,100,100,100,100,100,100,100,100]);
-    // .addStream(1,[-60,-60,-60,-60,-60,-60,-60,-60,-60,-60,-60,-60]);
-    // .addStream(1,[-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20]);
     var valData = {}; // core value model data object
     valData.folders = {}; // set of all folders
     valData.drivers = {}; // set of all drivers
