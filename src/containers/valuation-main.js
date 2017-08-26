@@ -6,7 +6,6 @@ import ValtableHeader from '../components/valtable-header';
 import ValtableBody from '../components/valtable-body';
 
 class ValuationMain extends Component {
-
   render() {
     const {addDriver, addFolder, valData, timeConfig} = this.props;
     return (

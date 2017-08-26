@@ -21,7 +21,6 @@ export default class ValtableRow extends Component {
         <li className="mdl-menu__item app-menu-item" onClick={() => actions.addDriver(headerid)}>New Driver</li>,
       ]
     }
-
     return (<Menu className="app-menu" children={children} ripple={true} target={'menu-'+headerid} />);
   }
 

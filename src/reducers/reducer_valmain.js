@@ -5,7 +5,7 @@ export default function(state = null, action) {
   class ValueFolder {
     constructor(name,parent) {
       this.id = cuid();           // preparing for database use
-      this.name = name;           // this will be the display name
+      this.name = name || this.id.substr(0:5); // this will be the display name
       this.description = "";
       this.segments = [];
       this.childFolders = [];
@@ -17,7 +17,7 @@ export default function(state = null, action) {
   class ValueDriver {
     constructor(name, parent, segments) {
       this.id = cuid();             // preparing for database use
-      this.name = name;         // this will be the display name
+      this.name = name || this.id.substr(0:5);  // this will be the display name
       this.description = "";    // detail description (available in right-side pane)
       this.parent = parent;
       this.segments = segments; // defaults to segments from parent
@@ -48,7 +48,7 @@ export default function(state = null, action) {
   }
   //==============================//
   //==== DATA MODEL FUNCTIONS ====//
-  var newFolder = function (name="new folder", parentID=null) {
+  var newFolder = function (name, parentID=null, valData) {
     const newFolder = new ValueFolder(name, parentID);
     valData.folders[newFolder.id] = newFolder;
     // keep track of folders that have no parents as 'root' folders
@@ -60,7 +60,7 @@ export default function(state = null, action) {
     return newFolder;
   }
 
-  var newDriver = function (name = "new driver", parentID) {
+  var newDriver = function (name, parentID, valData) {
     if (!parentID) throw new Error("Invalid add driver, parent is required!");
     const newDriver = new ValueDriver(name,parentID,valData.folders[parentID].segments);
     valData.drivers[newDriver.id] = newDriver;
@@ -85,28 +85,28 @@ export default function(state = null, action) {
     },
   };
 
-  // mock state for testing
-  if (!state) {
+
+  if (!state) { // mock state for testing
     var valData = {}; // core value model data object
     valData.folders = {}; // set of all folders
     valData.drivers = {}; // set of all drivers
     valData.roots = {}; // set of all roots
     // building up US data
-    let us = newFolder("US", null);
-    let usSales = newDriver("US Global Sales",us.id);
+    let us = newFolder("US", null, valData);
+    let usSales = newDriver("US Global Sales",us.id, valData);
     usSales.addStream(1,[100,100,100,100,100,100,100,100,100,100,100,100]);
-    let usCosts = newDriver("US Global G&A", us.id);
+    let usCosts = newDriver("US Global G&A", us.id, valData);
     usCosts.addStream(1,[-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20]);
-    let ec = newFolder("East Coast",us.id);
-    let nySales = newDriver("NY Sales",ec.id);
+    let ec = newFolder("East Coast",us.id, valData);
+    let nySales = newDriver("NY Sales",ec.id, valData);
     nySales.addStream(1,[50,50,50,50,50,50,50,50,50,50,50,50]);
-    let nyCosts = newDriver("NY COGS",ec.id);
+    let nyCosts = newDriver("NY COGS",ec.id, valData);
     nyCosts.addStream(1,[-60,-60,-60,-60,-60,-60,-60,-60,-60,-60,-60,-60]);
 
-    let emea = newFolder("EMEA",null);
-    let emeaSales = newDriver("EMEA Global Sales", emea.id);
+    let emea = newFolder("EMEA",null,valData);
+    let emeaSales = newDriver("EMEA Global Sales", emea.id, valData);
     emeaSales.addStream(1,[50,50,50,50,50,50,50,50,50,50,50,50]);
-    let emeaCosts = newDriver("EMEA Global G&A", emea.id);
+    let emeaCosts = newDriver("EMEA Global G&A", emea.id, valData);
     emeaCosts.addStream(1,[-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20,-20]);
     console.log(valData);
 
@@ -114,6 +114,19 @@ export default function(state = null, action) {
       timeConfig: timeConfig,
       valData: valData,
     }
+    return state;
+  } else {
+    let valData = Object.assign({},state.valData);
+    let timeConfig = Object.assign({},state.timeConfig);
+    // handle actions here
+    if (action.type === 'ADD_NEW_FOLDER') {
+      const parentID = action.payload;
+      newFolder(null,parentID, valData);
+    } else if (action.type === 'ADD_NEW_DRIVER') {
+      const id = action.payload;
+      const parent = valData.folders[id] ? id : valData.drivers[id].parent;
+      newDriver(null,parent, valData);
+    }
+    return {valData,timeConfig};
   }
-  return state;
 }
