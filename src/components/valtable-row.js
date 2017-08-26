@@ -9,11 +9,19 @@ export default class ValtableRow extends Component {
   }
 
   renderMenu() {
-    const {headerid,type} = this.props;
-    const children = [
-      <li className="mdl-menu__item app-menu-item">Some Action</li>,
-      <li className="mdl-menu__item app-menu-item">Another Action</li>
-    ]
+    const {headerid,type,actions} = this.props;
+    let children;
+    if (type === 'folder') {
+      children = [
+        <li className="mdl-menu__item app-menu-item" onClick={() => actions.addFolder(headerid)}>New Folder</li>,
+        <li className="mdl-menu__item app-menu-item" onClick={() => actions.addDriver(headerid)}>New Driver</li>
+      ]
+    } else {
+      children = [
+        <li className="mdl-menu__item app-menu-item" onClick={() => actions.addDriver(headerid)}>New Driver</li>,
+      ]
+    }
+
     return (<Menu className="app-menu" children={children} ripple={true} target={'menu-'+headerid} />);
   }
 

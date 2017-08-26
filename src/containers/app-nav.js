@@ -51,7 +51,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({selectNav : selectNav},dispatch);
+  return bindActionCreators({selectNav},dispatch);
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(AppNav);

@@ -7,13 +7,15 @@ export default class ValtableBody extends Component {
   }
 
   recurseFolders(folder,res,depth) {
-    const {valData,timeConfig} = this.props;
+    // TODO: refactor this with a renderRow method
+    const {valData,timeConfig,actions} = this.props;
     res.push( // first insert the row label (the folder)
       <ValtableRow key={folder.id} header={folder.name} headerid = {folder.id}
         timeValIndices={timeConfig.timeValIndices}
         valueStream={null}
         type='folder'
         depth={depth}
+        actions={actions}
       />
     ); // then see if it has child folders, if so recursively process them
     if (folder.childFolders.length > 0) {
@@ -30,6 +32,7 @@ export default class ValtableBody extends Component {
             valueStream={driver.valueStream}
             type='driver'
             depth={depth+1}
+            actions={actions}
           />
         );
       });

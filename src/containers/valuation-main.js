@@ -1,16 +1,19 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {addDriver, addFolder} from '../actions/valmain-actions';
 import ValtableHeader from '../components/valtable-header';
 import ValtableBody from '../components/valtable-body';
 
 class ValuationMain extends Component {
+
   render() {
+    const {addDriver, addFolder, valData, timeConfig} = this.props;
     return (
       <div className="valmain-table-div">
         <table className="mdl-data-table mdl-js-data-table valmain-table">
-          <ValtableHeader timePeriods={this.props.timeConfig.timeViewIndices}/>
-          <ValtableBody valData={this.props.valData} timeConfig={this.props.timeConfig}/>
+          <ValtableHeader timePeriods={timeConfig.timeViewIndices}/>
+          <ValtableBody valData={valData} timeConfig={timeConfig} actions={{addDriver, addFolder}}/>
         </table>
       </div>
     );
@@ -24,8 +27,8 @@ function mapStateToProps(state) {
   };
 }
 
-/*function mapDispatchToProps(dispatch) {
-  return bindActionCreators({selectNav : selectNav},dispatch);
-}*/
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({addDriver, addFolder},dispatch);
+}
 //mapDispatchToProps
-export default connect(mapStateToProps,null)(ValuationMain);
+export default connect(mapStateToProps,mapDispatchToProps)(ValuationMain);
