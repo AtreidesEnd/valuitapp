@@ -1,9 +1,20 @@
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames';
+import Menu from './menu';
 
 export default class ValtableRow extends Component {
   constructor(props) {
     super(props);
+  }
+
+  renderMenu() {
+    const {headerid,type} = this.props;
+    const children = [
+      <li className="mdl-menu__item app-menu-item">Some Action</li>,
+      <li className="mdl-menu__item app-menu-item">Another Action</li>
+    ]
+    return (<Menu className="app-menu" children={children} ripple={true} target={'menu-'+headerid} />);
   }
 
   renderRowCells() {
@@ -27,35 +38,39 @@ export default class ValtableRow extends Component {
           key={headerid+'-'+timeValIndices[ind]}
           className={resClass}>{val}
         </td>);
-    });
-  }
+      });
+    }
 
-  renderHead() {
-    const {type,depth,header} = this.props;
-    const thClasses = "valmain-table-body-row-header";
-    const nestedIndent = {paddingLeft:depth*15+'px !important'};
-    const decoIcon = type === 'folder' ? 'folder' : 'attach_money';
-    const iconClasses = "material-icons valmain-table-icons";
-    return (
-      <th
-        style={nestedIndent}
-        className={thClasses}>
-        <div>
-          <i className={iconClasses+'-type'}>{decoIcon}</i>
-          <span>{header}</span>
-          <i className={iconClasses+'-menu'}>more_vert</i>
-        </div>
-      </th>
-    );
-  }
+    renderHead() {
+      const {type,depth,header,headerid} = this.props;
+      const thClasses = "valmain-table-body-row-header";
+      const nestedIndent = {paddingLeft:depth*15+'px !important'};
+      const decoIcon = type === 'folder' ? 'folder' : 'attach_money';
+      const iconClasses = "material-icons valmain-table-icons";
+      const btnClasses = "mdl-button mdl-js-button mdl-button--icon valmain-table-icons";
+      return (
+        <th
+          style={nestedIndent}
+          className={thClasses}>
+          <div>
+            <i className={iconClasses+'-type'}>{decoIcon}</i>
+            <span>{header}</span>
+            <button id={'menu-'+headerid} className={btnClasses}>
+              <i className={iconClasses+'-menu'} onClick={this.handleMenuClick}>more_vert</i>
+            </button>
+            {this.renderMenu()}
+          </div>
+        </th>
+      );
+    }
 
-  render() {
-    const trClasses = "valmain-table-body-row";
-    return (
-      <tr className={trClasses}>
-        {this.renderHead()}
-        {this.renderRowCells()}
-      </tr>
-    );
+    render() {
+      const trClasses = "valmain-table-body-row";
+      return (
+        <tr className={trClasses}>
+          {this.renderHead()}
+          {this.renderRowCells()}
+        </tr>
+      );
+    }
   }
-}

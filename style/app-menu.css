@@ -1,0 +1,19 @@
+.app-menu {
+  padding: 0 0 !important;
+  min-width: 80px !important;
+  width: auto !important;
+  min-height: 40px !important;
+}
+
+.app-menu li {
+  padding: 0 12px !important;
+  height: auto !important;
+  min-height: 12px !important;
+  font-size: .9em !important;
+  line-height: 3;
+  border-bottom: solid 1px lightgrey;
+}
+
+.app-menu li:last-child {
+  border:none;
+}

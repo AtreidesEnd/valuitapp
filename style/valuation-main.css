@@ -60,9 +60,17 @@
   font-size: 1.3em !important;
 }
 
+button.valmain-table-icons {
+  height: 24px !important;
+  min-height: 24px !important;
+  width: 24px !important;
+  min-width: 24px !important;
+  font-size: 1em !important;
+}
+
 .valmain-table-icons-menu {
   font-size: 1.5em !important;
-  display:none;
+  display: none;
 }
 
 .valmain-table-body-row-header:hover
