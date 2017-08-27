@@ -2,6 +2,11 @@ body {
   height: 100%;
 }
 
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 .mdl-layout__content {
   height: 100%;
   padding-left: 0;

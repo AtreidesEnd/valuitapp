@@ -1,51 +1,53 @@
-.valmain-table-div {
-  margin: 10px;
+.valmain-table-container {
+  width: 100%;
+  border-bottom: solid 1px black;
+  border-right: solid 1px black;
 }
 
-.valmain-table {
-  width: 100%;
-  table-layout: fixed;
+.valmain-table-head,
+.valmain-table-body-row {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.valmain-thead-valdriver,
+.valmain-table-body-row-header {
+  flex: 1 0 300px;
+}
+
+.valmain-table-time-cell,
+.valmain-table-body-cell {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .valmain-thead-valdriver {
-  text-align: left !important;
   font-size: 1.5em !important;
   color: indigo !important;
-  width: 300px !important;
   border-right: solid 1px black;
-  vertical-align: top !important;
-  padding-left: 1em !important;
-  padding-top: .5em !important;
+  border-bottom: solid 1px black;
+  padding: .5em 0 .5em .75em;
 }
 
 .valmain-table-time-cell {
   font-style: italic;
   font-weight: bold;
   font-size: 1em !important;
-  padding: 0 !important;
-  vertical-align: middle !important;
   text-align: center !important;
   border-bottom: 1px solid black;
-  border-right: 1px dotted grey;
-  /*width: calc(100%/12);*/
-}
-
-
-.valmain-table tr,
-.valmain-table th,
-.valmain-table td {
-  min-height: 20px !important;
-  max-height: 48px !important;
-  height: auto !important;
+  border-right: 1px solid lightgrey;
 }
 
 .valmain-table-body-row-header {
-  padding: .4em 1em !important;
+  padding: .4em 1em;
   border-right: solid 1px black;
 }
 
 .valmain-table-body-row-header span {
-  width: 90%;
+  width: 100%;
   text-align: left;
 }
 
@@ -79,10 +81,10 @@ button.valmain-table-icons {
 }
 
 .valmain-table-body-cell {
-  padding: .2em !important;
   vertical-align: middle !important;
   text-align: center !important;
   font-style: italic !important;
+  border-right: 1px solid transparent;
 }
 
 .valmain-cell-positive {
@@ -93,8 +95,4 @@ button.valmain-table-icons {
 .valmain-cell-negative {
   color: darkred;
   background-color: hsl(0, 100%, 95%);
-}
-
-.spacer {
-  padding-left: 1.5em;
 }

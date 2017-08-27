@@ -29,22 +29,23 @@ export default class ValtableRow extends Component {
     // if aggregating above monthly view, this will be a multi-dimensional array
     // i.e. Quarterly year one would be: [[1,2,3],[4,5,6],[7,8,9],[10,11,12]]
     const {timeValIndices,valueStream,headerid} = this.props;
-    if (!valueStream || valueStream.length===0) return null;
     let tdArray = timeValIndices.map((timeGroup) => {
       timeGroup = Array.isArray(timeGroup) ? timeGroup : [timeGroup];
-      return timeGroup.reduce((sum,cur) => sum+valueStream[cur].value,0)
+      return timeGroup.reduce((sum,cur) => {
+        return (valueStream && valueStream[cur]) ? sum+valueStream[cur].value : '';
+      },0);
     });
 
-    const cellClass = "valmain-table-body-cell";
-    const cellPos = "valmain-cell-positive";
-    const cellNeg = "valmain-cell-negative";
+    const cellClass = 'valmain-table-body-cell';
+    const cellPos = 'valmain-cell-positive';
+    const cellNeg = 'valmain-cell-negative';
     return tdArray.map((val,ind) => {
-      let resClass = classNames(cellClass, (val<0) ? cellNeg : cellPos);
+      let resClass = classNames(cellClass, {[cellNeg]:val<0, [cellPos]:val>0});
       return (
-        <td
+        <div
           key={headerid+'-'+timeValIndices[ind]}
-          className={resClass}>{val}
-        </td>);
+          className={resClass}><span>{val}</span>
+        </div>);
       });
     }
 
@@ -56,28 +57,24 @@ export default class ValtableRow extends Component {
       const iconClasses = "material-icons valmain-table-icons";
       const btnClasses = "mdl-button mdl-js-button mdl-button--icon valmain-table-icons";
       return (
-        <th
-          style={nestedIndent}
-          className={thClasses}>
-          <div>
-            <i className={iconClasses+'-type'}>{decoIcon}</i>
-            <span>{header}</span>
-            <button id={'menu-'+headerid} className={btnClasses}>
-              <i className={iconClasses+'-menu'} onClick={this.handleMenuClick}>more_vert</i>
-            </button>
-            {this.renderMenu()}
-          </div>
-        </th>
+        <div style={nestedIndent} className={thClasses}>
+          <i className={iconClasses+'-type'}>{decoIcon}</i>
+          <span>{header}</span>
+          <button id={'menu-'+headerid} className={btnClasses}>
+            <i className={iconClasses+'-menu'}>more_vert</i>
+          </button>
+          {this.renderMenu()}
+        </div>
       );
     }
 
     render() {
       const trClasses = "valmain-table-body-row";
       return (
-        <tr className={trClasses}>
+        <div className={trClasses}>
           {this.renderHead()}
           {this.renderRowCells()}
-        </tr>
+        </div>
       );
     }
   }

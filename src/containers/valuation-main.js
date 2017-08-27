@@ -9,11 +9,9 @@ class ValuationMain extends Component {
   render() {
     const {addDriver, addFolder, valData, timeConfig} = this.props;
     return (
-      <div className="valmain-table-div">
-        <table className="mdl-data-table mdl-js-data-table valmain-table">
-          <ValtableHeader timePeriods={timeConfig.timeViewIndices}/>
-          <ValtableBody valData={valData} timeConfig={timeConfig} actions={{addDriver, addFolder}}/>
-        </table>
+      <div className="valmain-table-container">
+        <ValtableHeader timePeriods={timeConfig.timeViewIndices}/>
+        <ValtableBody valData={valData} timeConfig={timeConfig} actions={{addDriver, addFolder}}/>
       </div>
     );
   }

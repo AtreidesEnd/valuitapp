@@ -7,9 +7,8 @@ export default class ValtableHeader extends Component {
 
   renderTimeCells() {
     let classes = "valmain-table-time-cell";
-    let fixWidth = (70/this.props.timePeriods.length)+'%';
     return this.props.timePeriods.map(
-      (time) => (<th key={time} className={classes} style={{width:fixWidth}}>{time}</th>));
+      (time) => (<div key={time} className={classes}><span>{time}</span></div>));
   }
 
   render() {
@@ -17,12 +16,10 @@ export default class ValtableHeader extends Component {
     let rowClasses = "valmain-table-head-row";
     let valdriverClasses = "valmain-thead-valdriver";
     return (
-      <thead className={headClasses}>
-        <tr className={rowClasses}>
-          <th className={valdriverClasses}>Value Drivers</th>
-          {this.renderTimeCells()}
-        </tr>
-      </thead>
+      <div className={headClasses}>
+        <div className={valdriverClasses}>Value Drivers</div>
+        {this.renderTimeCells()}
+      </div>
     );
   }
 }
