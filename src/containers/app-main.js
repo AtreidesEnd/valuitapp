@@ -18,7 +18,9 @@ class AppMain extends Component {
     if (appModules[this.props.selected].hasDetail) {
       if (this.props.selected === "Valuation Model") {
         appDiv = (
-          <ValuationMain/>
+          <div className="app-main-div">
+            <ValuationMain/>
+          </div>
         );
       } else {
         appDiv = (
@@ -39,11 +41,7 @@ class AppMain extends Component {
   }
 
   render() {
-    return (
-      <div className="app-main-cell mdl-cell mdl-cell--10-col">
-        {this.renderMain()}
-      </div>
-    );
+    return this.renderMain();
   }
 }
 
