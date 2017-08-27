@@ -1,9 +1,6 @@
 .valmain-table-container {
-  /*margin: 10px auto;*/
-  /*width: 99%;*/
+  flex: 1;
   box-sizing:border-box;
-  max-height: 99%;
-  height: 100%;
 }
 
 .valmain-table-body {
