@@ -52,7 +52,7 @@ export default class ValtableBody extends Component {
 
   render() {
     return (
-      <div className='valhead-table-body'>
+      <div className='valmain-table-body'>
         {this.renderBodyRows()}
       </div>
     );

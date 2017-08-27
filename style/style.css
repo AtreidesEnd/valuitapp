@@ -80,7 +80,6 @@ body {
 
 .app-main-cell, .app-main-div {
   height: 100%;
-  box-sizing: border-box;
 }
 
 .app-main-div {

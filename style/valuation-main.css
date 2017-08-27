@@ -1,8 +1,15 @@
 .valmain-table-container {
-  width: 100%;
+  /*margin: 10px auto;*/
+  /*width: 99%;*/
+  box-sizing:border-box;
+  max-height: 99%;
   height: 100%;
-  border-bottom: solid 1px black;
-  border-right: solid 1px black;
+}
+
+.valmain-table-body {
+  overflow-y: scroll;
+  height: calc(100% - 42px);
+  max-height: 100%;
 }
 
 .valmain-table-head,
