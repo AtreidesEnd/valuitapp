@@ -23,7 +23,6 @@ export default class ValtableTotal extends Component {
         },0);
       },0);
     });
-    console.log(sumArray);
 
     const cellClass = 'valmain-table-total-cell';
     const cellPos = 'valmain-cell-positive';
