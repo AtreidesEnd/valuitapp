@@ -1,0 +1,24 @@
+.moda-wrapper,
+.modal-container {
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+
+.modal-wrapper {
+  position: fixed;
+  z-index: 1;
+  filter: blur(5px);
+  height: 100%;
+  width: 100%;
+  background-color: grey;
+}
+
+.modal-container {
+  position: fixed;
+  z-index: 1000;
+  height: 300px;
+  width: 400px;
+  background: white;
+  margin: auto;
+}
