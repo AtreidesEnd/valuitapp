@@ -12,8 +12,13 @@
   border-bottom: solid 1px black;
 }
 
+.valmain-table-total-row {
+  border-bottom: solid 1px black;
+}
+
 .valmain-table-head,
-.valmain-table-body-row {
+.valmain-table-body-row,
+.valmain-table-total-row {
   flex: 0 0 auto;
   display: flex;
   flex-direction: row;
@@ -21,12 +26,14 @@
 }
 
 .valmain-thead-valdriver,
-.valmain-table-body-row-header {
+.valmain-table-body-row-header,
+.valmain-table-total-row-header {
   flex: 1 0 300px;
 }
 
 .valmain-table-time-cell,
-.valmain-table-body-cell {
+.valmain-table-body-cell,
+.valmain-table-total-cell {
   flex: 1;
   display: flex;
   justify-content: center;
@@ -79,16 +86,33 @@ button.valmain-table-icons {
 .valmain-table-icons-menu {
   font-size: 1.3em !important;
   font-weight: lighter;
-  display: none;
+  visibility: hidden;
 }
 
 .valmain-table-body-row-header:hover
 .valmain-table-icons-menu {
-  display: inline-block;
+  visibility: visible;
+}
+
+.valmain-table-total-row-header {
+  border-right: solid 1px black;
+  font-size: 2em;
+  font-weight: bolder;
+}
+
+.valmain-table-total-row-header {
+  font-size: 1.3em !important;
+  font-style: italic;
+  text-align: right;
+  border-right: solid 1px black;
+  padding: .5em 1em;
+}
+
+.valmain-table-total-cell {
+  border-right: 1px solid transparent;
 }
 
 .valmain-table-body-cell {
-  vertical-align: middle !important;
   text-align: center !important;
   font-style: italic !important;
   border-right: 1px solid transparent;

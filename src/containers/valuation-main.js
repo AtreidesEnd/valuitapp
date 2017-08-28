@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import {addDriver, addFolder} from '../actions/valmain-actions';
 import ValtableHeader from '../components/valtable-header';
 import ValtableBody from '../components/valtable-body';
+import ValtableTotal from '../components/valtable-total';
 
 class ValuationMain extends Component {
   render() {
@@ -12,6 +13,7 @@ class ValuationMain extends Component {
       <div className="valmain-table-container">
         <ValtableHeader timePeriods={timeConfig.timeViewIndices}/>
         <ValtableBody valData={valData} timeConfig={timeConfig} actions={{addDriver, addFolder}}/>
+        <ValtableTotal valData={valData} timeConfig={timeConfig}/>
       </div>
     );
   }

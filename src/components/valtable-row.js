@@ -13,12 +13,12 @@ export default class ValtableRow extends Component {
     let children;
     if (type === 'folder') {
       children = [
-        <li className="mdl-menu__item app-menu-item" onClick={() => actions.addFolder(headerid)}>New Folder</li>,
-        <li className="mdl-menu__item app-menu-item" onClick={() => actions.addDriver(headerid)}>New Driver</li>
+        <li key={headerid+'newfolder'} className="mdl-menu__item app-menu-item" onClick={() => actions.addFolder(headerid)}>New Folder</li>,
+        <li key={headerid+'newdriver'} className="mdl-menu__item app-menu-item" onClick={() => actions.addDriver(headerid)}>New Driver</li>
       ]
     } else {
       children = [
-        <li className="mdl-menu__item app-menu-item" onClick={() => actions.addDriver(headerid)}>New Driver</li>,
+        <li key={headerid+'newdriver'} className="mdl-menu__item app-menu-item" onClick={() => actions.addDriver(headerid)}>New Driver</li>,
       ]
     }
     return (<Menu className="app-menu" children={children} ripple={true} target={'menu-'+headerid} />);
