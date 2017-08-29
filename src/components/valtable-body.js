@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ValtableRow from './valtable-row';
+import _ from 'lodash';
 
 export default class ValtableBody extends Component {
   constructor(props) {
@@ -33,9 +34,7 @@ export default class ValtableBody extends Component {
     const {valData} = this.props;
     if (!valData) return null;
     let res = [];
-    for (var root in valData.roots) {
-        this.recurseFolders(valData.folders[root],res,1);
-    }
+    _.forOwn(valData.roots,(a,root)=>{this.recurseFolders(valData.folders[root],res,1)});
     return res;
   }
 
