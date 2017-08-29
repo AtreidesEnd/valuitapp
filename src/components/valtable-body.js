@@ -7,37 +7,26 @@ export default class ValtableBody extends Component {
   }
 
   recurseFolders(folder,res,depth) {
-    // TODO: refactor this with a renderRow method
     const {valData,timeConfig,actions} = this.props;
-    res.push( // first insert the row label (the folder)
-      <ValtableRow key={folder.id} header={folder.name} headerid = {folder.id}
-        timeValIndices={timeConfig.timeValIndices}
-        valueStream={null}
-        type='folder'
-        depth={depth}
-        actions={actions}
-      />
-    ); // then see if it has child folders, if so recursively process them
-    if (folder.childFolders.length > 0) {
-      folder.childFolders.forEach(folderId => {
-        this.recurseFolders(valData.folders[folderId],res,depth+1);
-      });
+    res.push(this.renderRow(folder,'folder',timeConfig,depth,actions)); // push the folder
+    if (folder.childFolders.length > 0) { // then see if it has child folders, if so recursively process them
+      folder.childFolders.forEach(folderId => {this.recurseFolders(valData.folders[folderId],res,depth+1)});
     } // then see if it has child drivers, if so process each of them
     if (folder.childDrivers.length > 0) {
       folder.childDrivers.forEach((driverId) => {
         const driver = valData.drivers[driverId];
-        res.push(
-          <ValtableRow key={driver.id} header={driver.name} headerid = {driver.id}
-            timeValIndices={timeConfig.timeValIndices}
-            valueStream={driver.valueStream}
-            type='driver'
-            depth={depth+1}
-            actions={actions}
-          />
-        );
+        res.push(this.renderRow(driver,'driver',timeConfig,depth+1,actions));
       });
     }
-    return;
+  }
+
+  renderRow(entity,type,timeConfig,depth,actions) {
+    return (
+      <ValtableRow key={entity.id} header={entity.name} headerid = {entity.id}
+        timeValIndices={timeConfig.timeValIndices} valueStream={entity.valueStream}
+        type={type} depth={depth+1} actions={actions}
+      />
+    );
   }
 
   renderBodyRows() {
