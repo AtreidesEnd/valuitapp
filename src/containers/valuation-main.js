@@ -29,5 +29,5 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({addDriver, addFolder},dispatch);
 }
-//mapDispatchToProps
+
 export default connect(mapStateToProps,mapDispatchToProps)(ValuationMain);

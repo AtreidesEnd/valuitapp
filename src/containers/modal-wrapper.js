@@ -1,16 +1,28 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import ModalContainer from './modal-container';
+import classNames from 'classnames';
+import NewFolderForm from '../components/new-folder-form';
+import NewDriverForm from '../components/new-driver-form';
+import {handleFormSubmit, handleFormCancel} from '../actions/modal-actions';
 
 class ModalWrapper extends Component {
-
+  // <div className="modal-container">{modals.activeModal}</div>
   render() {
-    const modals = this.props.modals;
-    if (!modals.isActive) {
-      return null;
-    } else {
-      return (<div className="modal-wrapper"><ModalContainer/></div>);
+    const classes = classNames('modal-wrapper');
+    if (!this.props.modals.isActive) { return null }
+    else {
+      return (<div className={classes}>{this.pickForm()}</div>);
+    }
+  }
+
+  pickForm() {
+    const {modals,handleFormSubmit,handleFormCancel} = this.props;
+    var compProps = {modalData:modals.modalData, modalActions:{handleFormSubmit,handleFormCancel}}
+    if (modals.activeModal === 'NewFolder') {
+      return (<NewFolderForm {...compProps} />);
+    } else if (modals.activeModal === 'NewDriver') {
+      return (<NewDriverForm {...compProps} />);
     }
   }
 }
@@ -21,4 +33,8 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps,null)(ModalWrapper);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({handleFormSubmit, handleFormCancel},dispatch);
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(ModalWrapper);
