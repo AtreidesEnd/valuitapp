@@ -119,8 +119,8 @@ export default function(state = null, action) {
     let timeConfig = Object.assign({}, state.timeConfig);
     // handle actions here
     if (action.type === 'ADD_NEW_FOLDER') {
-      // const parentID = action.payload;
-      var nf = newFolder(action.payload.name, null, valData);
+      const parentID = action.payload.parent || null;
+      var nf = newFolder(action.payload.name, parentID, valData);
       nf.description = action.payload.desc;
       nf.segments = action.payload.segments;
 

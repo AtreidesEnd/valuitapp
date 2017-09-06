@@ -9,7 +9,9 @@ import {handleFormSubmit, handleFormCancel} from '../actions/modal-actions';
 
 class ModalWrapper extends Component {
   componentDidMount() {
-    window.componentHandler.upgradeElements(findDOMNode(this));
+    if (this.props.modals.isActive) {
+      window.componentHandler.upgradeElements(findDOMNode(this));
+    }
   }
   componentWillUnmount() {
     const element = findDOMNode(this);
@@ -25,10 +27,10 @@ class ModalWrapper extends Component {
 
   pickForm() {
     const {modals, handleFormSubmit, handleFormCancel} = this.props;
-    var compProps = {modalData: modals.modalData, modalActions: {handleFormSubmit, handleFormCancel}};
-    if (modals.activeModal === 'NewFolder') {
+    var compProps = {modalContext: modals.modalContext, modalActions: {handleFormSubmit, handleFormCancel}};
+    if (modals.activeModal === 'NEW_FOLDER') {
       return (<NewFolderForm {...compProps} />);
-    } else if (modals.activeModal === 'NewDriver') {
+    } else if (modals.activeModal === 'NEW_DRIVER') {
       return (<NewDriverForm {...compProps} />);
     }
   }

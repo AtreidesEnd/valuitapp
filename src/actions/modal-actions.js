@@ -20,9 +20,11 @@ export function handleFormCancel() {
   return {type: 'CANCEL_MODAL'};
 }
 
-export function triggerModal(context) {
+export function triggerValModal(modalData) {
+  console.log('Firing trigger new val modal action');
+  console.log(modalData);
   return {
-    type: context.type,
-    payload: context.data
+    type: 'TRIGGER_NEW_VAL_MODAL',
+    payload: modalData
   };
 }

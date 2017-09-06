@@ -1,24 +1,12 @@
 export default function(state = null, action) {
-
-  var modalState = {
-    isActive: true,
-    activeModal: 'NewFolder',
-    modalContext: {},
-  };
-
-  if (action.type === 'TRIGGER_NEW_FOLDER_MODAL') {
+  console.log('ModalReducer-action= ');
+  console.log(action);
+  if (action.type === 'TRIGGER_NEW_VAL_MODAL') {
+    console.log('Caught trigger new val modal action...');
     return {
       isActive: true,
-      activeModal: 'NewFolder',
-      modalContext: action.payload
-    };
-  }
-
-  if (action.type === 'TRIGGER_NEW_DRIVER_MODAL') {
-    return {
-      isActive: true,
-      activeModal: 'NewDriver',
-      modalContext: action.payload
+      activeModal: action.payload.type,
+      modalContext: action.payload.context
     };
   }
 
@@ -29,5 +17,5 @@ export default function(state = null, action) {
     return {isActive: false};
   }
 
-  return modalState;
+  return {isActive: false};
 }

@@ -10,7 +10,7 @@ class NewFolderForm extends React.Component {
       name: '',
       desc: '',
       segments: '',
-      parent: '',
+      parent: this.props.modalContext,
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.onCancel = this.onCancel.bind(this);
