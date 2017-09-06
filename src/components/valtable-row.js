@@ -60,24 +60,24 @@ export default class ValtableRow extends Component {
     const iconClasses = 'material-icons valmain-table-icons';
     const btnClasses = 'mdl-button mdl-js-button mdl-button--icon valmain-table-icons';
     return (
-        <div style={nestedIndent} className={thClasses}>
-          <i className={iconClasses + '-type'}>{decoIcon}</i>
-          <span>{header}</span>
-          <button id={'menu-' + headerid} className={btnClasses}>
-            <i className={iconClasses + '-menu'}>more_vert</i>
-          </button>
-          {this.renderMenu()}
-        </div>
+      <div style={nestedIndent} className={thClasses}>
+        <i className={iconClasses + '-type'}>{decoIcon}</i>
+        <span>{header}</span>
+        <button id={'menu-' + headerid} className={btnClasses}>
+          <i className={iconClasses + '-menu'}>more_vert</i>
+        </button>
+        {this.renderMenu()}
+      </div>
     );
   }
 
   render() {
     const trClasses = 'valmain-table-body-row';
     return (
-        <div className={trClasses}>
-          {this.renderHead()}
-          {this.renderRowCells()}
-        </div>
+      <div className={trClasses}>
+        {this.renderHead()}
+        {this.renderRowCells()}
+      </div>
     );
   }
-  }
+}

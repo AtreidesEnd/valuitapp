@@ -13,7 +13,7 @@ class Menu extends React.Component {
   render() {
     const { children, className, ripple, target} = this.props;
     const classes = classNames('mdl-menu mdl-js-menu',
-        {'mdl-js-ripple-effect': ripple}, className);
+      {'mdl-js-ripple-effect': ripple}, className);
     return (<ul className={classes} data-mdl-for={target}>{children}</ul>);
   }
 }

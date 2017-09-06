@@ -17,39 +17,39 @@ export default class ValtableTotal extends Component {
     const drivers = this.props.valData.drivers;
     let sumArray = timeValIndices.map((timeGroup) => {
       timeGroup = Array.isArray(timeGroup) ? timeGroup : [timeGroup];
-      return timeGroup.reduce((sum,cur) => {
-        return sum + _.reduce(drivers,(sum,dr) => {
+      return timeGroup.reduce((sum, cur) => {
+        return sum + _.reduce(drivers, (sum, dr) => {
           return sum + ((dr.valueStream && dr.valueStream[cur]) ? dr.valueStream[cur].value : 0);
-        },0);
-      },0);
+        }, 0);
+      }, 0);
     });
 
     const cellClass = 'valmain-table-total-cell';
     const cellPos = 'valmain-cell-positive';
     const cellNeg = 'valmain-cell-negative';
-    return sumArray.map((val,ind) => {
-      let resClass = classNames(cellClass, {[cellNeg]:val<0, [cellPos]:val>0});
+    return sumArray.map((val, ind) => {
+      let resClass = classNames(cellClass, {[cellNeg]: val < 0, [cellPos]: val > 0});
       return (
         <div
-          key={'tabletotal-'+timeValIndices[ind]}
+          key={'tabletotal-' + timeValIndices[ind]}
           className={resClass}><span>{val}</span>
         </div>);
-      });
-    }
-
-    renderHead() {
-      const thClasses = 'valmain-table-total-row-header';
-
-      return <div className={thClasses}>Total:</div>;
-    }
-
-    render() {
-      const trClasses = 'valmain-table-total-row';
-      return (
-        <div className={trClasses}>
-          {this.renderHead()}
-          {this.renderRowCells()}
-        </div>
-      );
-    }
+    });
   }
+
+  renderHead() {
+    const thClasses = 'valmain-table-total-row-header';
+
+    return <div className={thClasses}>Total:</div>;
+  }
+
+  render() {
+    const trClasses = 'valmain-table-total-row';
+    return (
+      <div className={trClasses}>
+        {this.renderHead()}
+        {this.renderRowCells()}
+      </div>
+    );
+  }
+}

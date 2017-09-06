@@ -4,7 +4,7 @@ export default function(state = null, action) {
   //==== BEGIN CLASS DEFINITIONS ====//
   class ValueFolder {
     constructor(name, parent) {
-      this.id = cuid();           // preparing for database use
+      this.id = cuid(); // preparing for database use
       this.name = name || this.id.substring(0, 6); // this will be the display name
       this.description = '';
       this.segments = [];
@@ -16,14 +16,14 @@ export default function(state = null, action) {
 
   class ValueDriver {
     constructor(name, parent, segments) {
-      this.id = cuid();             // preparing for database use
-      this.name = name || this.id.substr(0, 6);  // this will be the display name
-      this.description = '';    // detail description (available in right-side pane)
+      this.id = cuid(); // preparing for database use
+      this.name = name || this.id.substr(0, 6); // this will be the display name
+      this.description = ''; // detail description (available in right-side pane)
       this.parent = parent;
       this.segments = segments; // defaults to segments from parent
-      this.isRevenue = true;    // Revenue=true, Cost=false
-      this.isShared = false;    // is it a direct/sole driver or a shared driver
-      this.valueStream = [];    // actual values
+      this.isRevenue = true; // Revenue=true, Cost=false
+      this.isShared = false; // is it a direct/sole driver or a shared driver
+      this.valueStream = []; // actual values
     }
 
     addCell(date, value, style) {
@@ -41,9 +41,9 @@ export default function(state = null, action) {
   class ValueCell {
     constructor(date, value, style = {}) {
       this.id = '';
-      this.date = date;         // for now, date is integer - months since T0
-      this.value = value;       // integer value, full value - should be formatted later
-      this.style = style;       // css style object
+      this.date = date; // for now, date is integer - months since T0
+      this.value = value; // integer value, full value - should be formatted later
+      this.style = style; // css style object
     }
   }
   //==============================//

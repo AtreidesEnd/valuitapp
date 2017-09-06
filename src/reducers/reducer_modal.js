@@ -7,7 +7,7 @@ export default function(state = null, action) {
     };
   }
 
-// MODAL CANCELLATIONS
+  // MODAL CANCELLATIONS
   if (action.type === 'ADD_NEW_FOLDER' ||
       action.type === 'ADD_NEW_DRIVER' ||
       action.type === 'CANCEL_MODAL') {
