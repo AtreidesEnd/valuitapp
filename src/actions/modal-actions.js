@@ -21,8 +21,6 @@ export function handleFormCancel() {
 }
 
 export function triggerValModal(modalData) {
-  console.log('Firing trigger new val modal action');
-  console.log(modalData);
   return {
     type: 'TRIGGER_NEW_VAL_MODAL',
     payload: modalData
